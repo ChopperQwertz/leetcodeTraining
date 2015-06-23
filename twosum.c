@@ -22,13 +22,13 @@ void insert_hash(HashTable *hTable, int key, int value)
 	int slot = abs(value)%BUCKET_SIZE;	
 	if (hTable->entry[slot].nextNode == 0) { // empty
 		hTable->entry[slot].Key = key;
-        hTable->entry[slot].Val = value;
+		hTable->entry[slot].Val = value;
 		hTable->entry[slot].nextNode = (Node *)calloc(1, sizeof(Node));
 	} else { 
 		Node *node = hTable->entry[slot].nextNode;
 		while (node->nextNode != 0) 
 			node = node->nextNode;
-        node->Key = key;
+		node->Key = key;
 		node->Val = value;
 		node->nextNode = (Node *)calloc(1, sizeof(Node));
 	}
@@ -50,7 +50,7 @@ int find_hash(HashTable *hTable, int key, int value)
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target) {
-	int i, j, searchValue;
+	int i, searchValue;
 	int *output;
 	HashTable *myHash;
     
@@ -63,11 +63,11 @@ int* twoSum(int* nums, int numsSize, int target) {
 	for (i=0; i<numsSize; i++) 
 		insert_hash(myHash, i, nums[i]);		
 	
+	// start scan
 	for (i=0; i<numsSize; i++) {
 		int val;
 		searchValue = target - nums[i];	
-		val = find_hash(myHash, i, searchValue);
-		
+		val = find_hash(myHash, i, searchValue);		
 		if (val >= 0) {
 			if (i > val) {
 				output[0] = val+1;
