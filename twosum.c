@@ -9,12 +9,12 @@
 
 typedef struct Node {
 	int Key;
-    int Val;
+	int Val;
 	struct Node *nextNode;
 } Node;
 
 typedef struct HashTable {
-    Node *entry;
+	Node *entry;
 } HashTable;
 
 void insert_hash(HashTable *hTable, int key, int value)
@@ -50,11 +50,11 @@ int find_hash(HashTable *hTable, int key, int value)
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target) {
-    int i, j, searchValue;
-    int *output;
-    HashTable *myHash;
+	int i, j, searchValue;
+	int *output;
+	HashTable *myHash;
     
-    output = (int *)calloc(2, sizeof (int));
+	output = (int *)calloc(2, sizeof (int));
 	// default use BUCKET_SIZE entry
 	myHash = (HashTable *)calloc(1, sizeof(HashTable));
 	myHash->entry = (Node *)calloc(BUCKET_SIZE, sizeof(Node));
